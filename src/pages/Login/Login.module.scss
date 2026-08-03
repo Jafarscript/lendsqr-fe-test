@@ -1,0 +1,171 @@
+@use '../../styles/variables' as *;
+
+.page {
+  display: flex;
+  min-height: 100vh;
+  background-color: $color-white;
+
+  @include tablet {
+    flex-direction: column;
+  }
+}
+
+.illustrationPane {
+  flex: 1 1 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: $space-8 $space-8 0;
+
+  @include tablet {
+    flex: 0 0 auto;
+    padding: $space-5 $space-5 0;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  font-size: 24px;
+  font-weight: 700;
+  color: $color-navy;
+  margin-bottom: $space-6;
+
+  @include tablet {
+    margin-bottom: $space-4;
+  }
+}
+
+.logoMark {
+  width: 28px;
+  height: 28px;
+  background-color: $color-primary;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.illustrationWrap {
+  @include mobile {
+    svg {
+      width: 220px;
+      height: 200px;
+    }
+  }
+}
+
+.formPane {
+  flex: 1 1 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $space-5;
+}
+
+.formInner {
+  width: 100%;
+  max-width: 380px;
+}
+
+.heading {
+  font-size: 28px;
+  font-weight: 700;
+  color: $color-navy;
+  margin-bottom: $space-2;
+
+  @include mobile {
+    font-size: 24px;
+  }
+}
+
+.subheading {
+  font-size: 16px;
+  color: $color-text;
+  margin-bottom: $space-6;
+}
+
+.field {
+  position: relative;
+  margin-bottom: $space-5;
+}
+
+.input {
+  width: 100%;
+  padding: $space-3 $space-4;
+  border: 1px solid $color-border;
+  border-radius: 4px;
+  font-size: 14px;
+  color: $color-text;
+  background: transparent;
+
+  &:focus {
+    outline: none;
+    border-color: $color-primary;
+  }
+
+  &::placeholder {
+    color: $color-text-light;
+  }
+}
+
+.inputError {
+  border-color: #e4033b;
+}
+
+.toggleVisibility {
+  position: absolute;
+  right: $space-4;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: $color-primary;
+}
+
+.forgotPassword {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  color: $color-primary;
+  margin-bottom: $space-6;
+}
+
+.submitButton {
+  width: 100%;
+  padding: $space-3 $space-4;
+  background-color: $color-primary;
+  color: $color-white;
+  font-weight: 600;
+  font-size: 15px;
+  border-radius: 4px;
+  transition: opacity 0.15s ease;
+
+  &:hover:not(:disabled) {
+    opacity: 0.9;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.errorBanner {
+  background-color: $color-status-blacklisted-bg;
+  color: $color-status-blacklisted-text;
+  border-radius: 4px;
+  padding: $space-3 $space-4;
+  font-size: 13px;
+  margin-bottom: $space-4;
+}
+
+.fieldError {
+  color: $color-status-blacklisted-text;
+  font-size: 12px;
+  margin-top: $space-1;
+  display: block;
+}
