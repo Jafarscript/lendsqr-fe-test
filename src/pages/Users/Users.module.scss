@@ -1,0 +1,16 @@
+@use '../../styles/variables' as *;
+
+.page {
+  padding: $space-5 $space-6;
+
+  @include mobile {
+    padding: $space-4;
+  }
+}
+
+.heading {
+  font-size: 24px;
+  font-weight: 600;
+  color: $color-navy;
+  margin-bottom: $space-5;
+}

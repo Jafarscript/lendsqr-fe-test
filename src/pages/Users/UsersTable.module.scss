@@ -1,0 +1,55 @@
+@use '../../styles/variables' as *;
+
+.tableWrapper {
+  position: relative;
+  background-color: $color-white;
+  border-radius: 4px;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 720px;
+}
+
+.table th {
+  text-align: left;
+  padding: $space-4;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  color: $color-text;
+  text-transform: uppercase;
+  white-space: nowrap;
+  border-bottom: 1px solid $color-border;
+}
+
+.table td {
+  padding: $space-4;
+  font-size: 13px;
+  color: $color-text;
+  border-bottom: 1px solid $color-border;
+  white-space: nowrap;
+}
+
+.thContent {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
+  position: relative;
+}
+
+.filterTrigger {
+  color: $color-text-light;
+  font-size: 12px;
+
+  &:hover {
+    color: $color-navy;
+  }
+}
+
+.statusCell {
+  display: flex;
+  align-items: center;
+}

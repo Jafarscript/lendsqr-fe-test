@@ -1,0 +1,29 @@
+@use '../../styles/variables' as *;
+
+.pill {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.active {
+  background-color: $color-status-active-bg;
+  color: $color-status-active-text;
+}
+
+.inactive {
+  background-color: $color-status-inactive-bg;
+  color: $color-status-inactive-text;
+}
+
+.pending {
+  background-color: $color-status-pending-bg;
+  color: $color-status-pending-text;
+}
+
+.blacklisted {
+  background-color: $color-status-blacklisted-bg;
+  color: $color-status-blacklisted-text;
+}
