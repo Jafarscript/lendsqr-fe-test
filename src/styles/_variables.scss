@@ -1,0 +1,55 @@
+// Colors — sampled from the Lendsqr Figma screens
+$color-primary: #39cdcc; // teal buttons / active nav accents
+$color-primary-dark: #213f7d;
+$color-navy: #213f7d; // headings, links
+$color-text: #545f7d;
+$color-text-light: #96a1b2;
+$color-border: #e0e0e0;
+$color-bg: #fbfbfb;
+$color-white: #ffffff;
+
+// Status pill colors
+$color-status-active-bg: #ddf6e8;
+$color-status-active-text: #39cd62;
+$color-status-inactive-bg: #f5f5f7;
+$color-status-inactive-text: #545f7d;
+$color-status-pending-bg: #fff8e2;
+$color-status-pending-text: #e9b200;
+$color-status-blacklisted-bg: #ffe4e5;
+$color-status-blacklisted-text: #e4033b;
+
+// Spacing scale
+$space-1: 4px;
+$space-2: 8px;
+$space-3: 12px;
+$space-4: 16px;
+$space-5: 24px;
+$space-6: 32px;
+$space-8: 48px;
+
+// Breakpoints
+$breakpoint-mobile: 480px;
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1200px;
+
+// Layout
+$sidebar-width: 283px;
+$header-height: 80px;
+
+@mixin mobile {
+  @media (max-width: #{$breakpoint-mobile}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: #{$breakpoint-tablet}) {
+    @content;
+  }
+}
+
+@mixin desktop-up {
+  @media (min-width: #{$breakpoint-desktop}) {
+    @content;
+  }
+}
