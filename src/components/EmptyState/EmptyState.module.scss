@@ -1,0 +1,25 @@
+@use '../../styles/variables' as *;
+
+.container {
+  padding: $space-8 $space-4;
+  text-align: center;
+  color: $color-text;
+}
+
+.icon {
+  font-size: 32px;
+  margin-bottom: $space-3;
+  opacity: 0.6;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 600;
+  color: $color-navy;
+  margin-bottom: $space-1;
+}
+
+.message {
+  font-size: 13px;
+  color: $color-text-light;
+}
