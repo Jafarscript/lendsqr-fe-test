@@ -1,0 +1,37 @@
+@use '../../styles/variables' as *;
+
+.section {
+  margin-bottom: $space-6;
+}
+
+.sectionTitle {
+  font-size: 13px;
+  font-weight: 600;
+  color: $color-text-light;
+  margin-bottom: $space-4;
+  text-transform: uppercase;
+}
+
+.fieldGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: $space-5;
+
+  @include tablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+.guarantorBlock {
+  margin-bottom: $space-4;
+}
+
+.sectionDivider {
+  border: none;
+  border-top: 1px solid $color-border;
+  margin: $space-5 0;
+}

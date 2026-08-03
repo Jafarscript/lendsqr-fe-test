@@ -1,0 +1,97 @@
+@use '../../styles/variables' as *;
+
+.page {
+  padding: $space-5 $space-6;
+
+  @include mobile {
+    padding: $space-4;
+  }
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
+  font-size: 13px;
+  color: $color-text;
+  margin-bottom: $space-4;
+
+  &:hover {
+    color: $color-navy;
+  }
+}
+
+.headerRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: $space-4;
+  margin-bottom: $space-5;
+}
+
+.heading {
+  font-size: 24px;
+  font-weight: 600;
+  color: $color-navy;
+}
+
+.actionButtons {
+  display: flex;
+  gap: $space-3;
+}
+
+.blacklistButton,
+.activateButton {
+  padding: $space-2 $space-5;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px solid;
+  background-color: $color-white;
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+}
+
+.blacklistButton {
+  color: $color-status-blacklisted-text;
+  border-color: $color-status-blacklisted-text;
+}
+
+.activateButton {
+  color: $color-primary;
+  border-color: $color-primary;
+}
+
+.profileCard {
+  background-color: $color-white;
+  border: 1px solid $color-border;
+  border-radius: 4px;
+  padding: $space-5 $space-6;
+  margin-bottom: $space-5;
+}
+
+.tabContent {
+  margin-top: $space-6;
+}
+
+.skeletonBlock {
+  height: 100px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #eee 25%, #f5f5f5 50%, #eee 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+  margin-bottom: $space-5;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}

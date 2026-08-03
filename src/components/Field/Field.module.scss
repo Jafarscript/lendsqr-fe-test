@@ -1,0 +1,14 @@
+@use '../../styles/variables' as *;
+
+.label {
+  font-size: 11px;
+  color: $color-text-light;
+  text-transform: uppercase;
+  margin-bottom: $space-1;
+}
+
+.value {
+  font-size: 14px;
+  color: #1e1e2f;
+  font-weight: 500;
+}

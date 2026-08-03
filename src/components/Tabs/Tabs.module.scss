@@ -1,0 +1,27 @@
+@use '../../styles/variables' as *;
+
+.tabList {
+  display: flex;
+  gap: $space-6;
+  border-bottom: 1px solid $color-border;
+  overflow-x: auto;
+
+  @include mobile {
+    gap: $space-4;
+  }
+}
+
+.tab {
+  padding: $space-3 $space-1;
+  font-size: 14px;
+  color: $color-text-light;
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+}
+
+.tabActive {
+  color: $color-primary;
+  border-bottom-color: $color-primary;
+  font-weight: 600;
+}
