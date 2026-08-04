@@ -1,7 +1,6 @@
-import { useState, type FormEvent } from 'react';
+import { useState, type SubmitEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../../services/authApi';
-import LoginIllustration from './LoginIllustration';
 import styles from './Login.module.scss';
 
 export default function Login() {
@@ -22,7 +21,7 @@ export default function Login() {
     return Object.keys(errors).length === 0;
   }
 
-  async function handleSubmit(e: FormEvent) {
+  async function handleSubmit(e: SubmitEvent) {
     e.preventDefault();
     setFormError(null);
 
