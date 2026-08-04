@@ -2,6 +2,8 @@ import { useState, type SubmitEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../../services/authApi';
 import styles from './Login.module.scss';
+import logoSvg from "../../assets/logo.svg";
+import illustrationPng from '../../assets/pablo-sign-in 1.png';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -42,10 +44,10 @@ export default function Login() {
     <div className={styles.page}>
       <div className={styles.illustrationPane}>
       <div className={styles.logo}>
-        <img src="/src/assets/logo.svg" alt="Lendsqr Logo" />
+        <img src={logoSvg} alt="Lendsqr Logo" />
       </div>
       <div className={styles.illustrationWrap}>
-        <img src="/src/assets/pablo-sign-in 1.png" alt="Sign in Illustration" />
+        <img src={illustrationPng} alt="Sign in Illustration" />
       </div>
     </div>
 

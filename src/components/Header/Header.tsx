@@ -1,6 +1,7 @@
 import { getSession } from '../../services/authApi';
 import { ICONS } from '../../constants/icons';
 import styles from './Header.module.scss';
+import logoSVG from '../../assets/logo.svg'
 
 export default function Header({ onMenuClick }: { onMenuClick: () => void }) {
   const session = getSession();
@@ -24,7 +25,7 @@ export default function Header({ onMenuClick }: { onMenuClick: () => void }) {
       </button>
 
       <div className={styles.logo}>
-        <img src="/src/assets/logo.svg" alt="Lendsqr Logo" />
+        <img src={logoSVG} alt="Lendsqr Logo" />
       </div>
 
       <form
