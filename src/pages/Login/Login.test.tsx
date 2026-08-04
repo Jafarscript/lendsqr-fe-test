@@ -65,7 +65,7 @@ describe('Login page', () => {
     expect(navigateMock).not.toHaveBeenCalled();
   });
 
-  it('navigates to /users on successful login', async () => {
+  it('navigates to /dashboard on successful login', async () => {
     const user = userEvent.setup();
     renderLogin();
 
@@ -74,7 +74,7 @@ describe('Login page', () => {
     await user.click(screen.getByRole('button', { name: /log in/i }));
 
     await waitFor(() => {
-      expect(navigateMock).toHaveBeenCalledWith('/users', { replace: true });
+      expect(navigateMock).toHaveBeenCalledWith('/dashboard', { replace: true });
     });
   });
 });

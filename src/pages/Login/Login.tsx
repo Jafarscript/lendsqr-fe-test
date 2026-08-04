@@ -31,7 +31,7 @@ export default function Login() {
     setIsSubmitting(true);
     try {
       await login(email, password);
-      navigate('/users', { replace: true });
+      navigate('/dashboard', { replace: true });
     } catch (err) {
       setFormError(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
     } finally {

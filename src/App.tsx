@@ -13,18 +13,19 @@ export default function App() {
 
       <Route element={<ProtectedRoute />}>
         <Route element={<AppLayout />}>
-          {/* Dashboard is deliberately parked for now — see project notes.
-              It still routes (so the sidebar link and any deep link work),
-              it's just not built out beyond a placeholder yet. */}
+          {/* Dashboard has no distinct design in the Figma export provided for
+              this assessment (see README) — it currently renders a placeholder.
+              It's still the default landing route so the sidebar link and any
+              deep link work as expected. */}
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/users" element={<Users />} />
           <Route path="/users/:userId" element={<UserDetails />} />
         </Route>
       </Route>
 
-      {/* Landing on Users rather than Dashboard for now, since Dashboard is parked. */}
-      <Route path="/" element={<Navigate to="/users" replace />} />
-      <Route path="*" element={<Navigate to="/users" replace />} />
+      {/* Landing on Dashboard by default. */}
+      <Route path="/" element={<Navigate to="/dashboard" replace />} />
+      <Route path="*" element={<Navigate to="/dashboard" replace />} />
     </Routes>
   );
 }
