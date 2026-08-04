@@ -3,7 +3,7 @@
 .panel {
   position: absolute;
   top: 100%;
-  left: 0;
+  left: -10px;
   margin-top: $space-2;
   background-color: $color-white;
   border: 1px solid $color-border;
@@ -14,8 +14,8 @@
   z-index: 20;
 
   @include mobile {
-    width: 90vw;
-    left: 5vw;
+    width: 70vw;
+    left: 1vw;
   }
 }
 

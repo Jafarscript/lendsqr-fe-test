@@ -15,7 +15,13 @@ interface UsersStatsProps {
 export default function UsersStats({ stats }: UsersStatsProps) {
   return (
     <div className={styles.statsGrid}>
-      <StatCard icon={ICONS.statUsers} iconBg="#fce7fc" label="Users" value={stats?.total ?? 0} />
+      {/* Passing the Lucide React component definitions directly down into the props */}
+      <StatCard 
+        icon={ICONS.statUsers} 
+        iconBg="#fce7fc" 
+        label="Users" 
+        value={stats?.total ?? 0} 
+      />
       <StatCard
         icon={ICONS.statActiveUsers}
         iconBg="#e9e2fe"

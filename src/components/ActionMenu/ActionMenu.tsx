@@ -15,6 +15,11 @@ export default function ActionMenu({ userId, status, onBlacklist, onActivate }: 
   const wrapperRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
+  // Assign the Lucide components to capitalized variable names for JSX rendering
+  const ViewDetailsIcon = ICONS.viewDetails;
+  const BlacklistUserIcon = ICONS.blacklistUser;
+  const ActivateUserIcon = ICONS.activateUser;
+
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
       if (wrapperRef.current && !wrapperRef.current.contains(e.target as Node)) {
@@ -42,7 +47,8 @@ export default function ActionMenu({ userId, status, onBlacklist, onActivate }: 
         aria-expanded={open}
         aria-label={`Actions for user ${userId}`}
       >
-        {ICONS.actionMenuTrigger}
+        {/* Renders the static vertical ellipsis string string cleanly */}
+        <span className={styles.triggerText}>{ICONS.actionMenuTrigger}</span>
       </button>
 
       {open && (
@@ -53,10 +59,11 @@ export default function ActionMenu({ userId, status, onBlacklist, onActivate }: 
             className={styles.menuItem}
             onClick={() => {
               setOpen(false);
-              navigate(`/users/${userId}`);
+              navigate(`/dashboard/users/${userId}`);
             }}
           >
-            {ICONS.viewDetails} View Details
+            <ViewDetailsIcon size={14} strokeWidth={2} />
+            <span>View Details</span>
           </button>
           <button
             type="button"
@@ -68,7 +75,8 @@ export default function ActionMenu({ userId, status, onBlacklist, onActivate }: 
               onBlacklist(userId);
             }}
           >
-            {ICONS.blacklistUser} Blacklist User
+            <BlacklistUserIcon size={14} strokeWidth={2} />
+            <span>Blacklist User</span>
           </button>
           <button
             type="button"
@@ -80,7 +88,8 @@ export default function ActionMenu({ userId, status, onBlacklist, onActivate }: 
               onActivate(userId);
             }}
           >
-            {ICONS.activateUser} Activate User
+            <ActivateUserIcon size={14} strokeWidth={2} />
+            <span>Activate User</span>
           </button>
         </div>
       )}

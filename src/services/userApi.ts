@@ -77,9 +77,7 @@ export async function fetchUsers(
   });
 }
 
-// mockapi.io serves the full flat array with ?page & ?limit query params, and doesn't
-// support our compound filters server-side — so we fetch a generous page and filter
-// client-side. Swap this out for real server-side filtering if your provider supports it.
+
 async function fetchUsersFromRemote(
   page: number,
   pageSize: number,
@@ -143,9 +141,6 @@ export async function updateUserStatus(
   if (user) {
     user.status = status;
   }
-  // Note: this mutates the in-memory dataset for the session only. There's no
-  // persistence layer in this assessment beyond localStorage (used for the
-  // User Details cache), so status changes reset on a full page reload.
 }
 
 function toSummary(user: UserDetail): UserSummary {

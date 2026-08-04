@@ -9,10 +9,12 @@ interface ErrorStateProps {
 
 /** Generic fetch-failed state with a retry action — used across Users and User Details. */
 export default function ErrorState({ title = "Couldn't load this", message, onRetry }: ErrorStateProps) {
+
+  const ErrorIcon = ICONS.errorState;
   return (
     <div className={styles.container} role="alert">
       <div className={styles.icon} aria-hidden="true">
-        {ICONS.errorState}
+        <ErrorIcon size={48} strokeWidth={1.5} />
       </div>
       <p className={styles.title}>{title}</p>
       <p className={styles.message}>{message}</p>

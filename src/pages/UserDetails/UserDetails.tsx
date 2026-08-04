@@ -21,6 +21,7 @@ export default function UserDetails() {
   const [localUser, setLocalUser] = useState<UserDetail | null>(null);
 
   const displayUser = localUser ?? user;
+  const BackArrow = ICONS.backArrow
 
   async function handleStatusChange(status: UserDetail['status']) {
     if (!userId) return;
@@ -33,10 +34,11 @@ export default function UserDetails() {
     }
   }
 
+
   return (
     <div className={styles.page}>
-      <Link to="/users" className={styles.backLink}>
-        {ICONS.backArrow} Back to Users
+      <Link to="/dashboard/users" className={styles.backLink}>
+        <BackArrow size={14} strokeWidth={2} /> Back to Users
       </Link>
 
       <div className={styles.headerRow}>

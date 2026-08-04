@@ -61,6 +61,9 @@ export default function UsersTable({
 }: UsersTableProps) {
   const [openFilterColumn, setOpenFilterColumn] = useState<string | null>(null);
 
+  // Capitalize for proper inline JSX rendering
+  const FilterCaretIcon = ICONS.filterCaret;
+
   if (error) {
     return (
       <div className={styles.tableWrapper}>
@@ -93,7 +96,8 @@ export default function UsersTable({
                       setOpenFilterColumn((prev) => (prev === col.key ? null : col.key))
                     }
                   >
-                    {ICONS.filterCaret}
+                    {/* Render the Lucide icon with crisp sizing */}
+                    <FilterCaretIcon size={14} strokeWidth={2} />
                   </button>
                   {openFilterColumn === col.key && (
                     <FilterPanel
@@ -117,6 +121,11 @@ export default function UsersTable({
           {!isLoading && users.length === 0 && (
             <tr>
               <td colSpan={COLUMNS.length + 1}>
+                {/* 
+                  Pass the Component directly. You will likely need to update 
+                  the `icon` prop type inside EmptyState from `string` to 
+                  `React.ComponentType<{ size?: number }>` if it complains.
+                */}
                 <EmptyState
                   icon={ICONS.emptyStateSearch}
                   title="No users found"

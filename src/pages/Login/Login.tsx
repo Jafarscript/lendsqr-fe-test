@@ -42,14 +42,13 @@ export default function Login() {
   return (
     <div className={styles.page}>
       <div className={styles.illustrationPane}>
-        <div className={styles.logo}>
-          <span className={styles.logoMark} aria-hidden="true" />
-          <span>lendsqr</span>
-        </div>
-        <div className={styles.illustrationWrap}>
-          <LoginIllustration />
-        </div>
+      <div className={styles.logo}>
+        <img src="/src/assets/logo.svg" alt="Lendsqr Logo" />
       </div>
+      <div className={styles.illustrationWrap}>
+        <img src="/src/assets/pablo-sign-in 1.png" alt="Sign in Illustration" />
+      </div>
+    </div>
 
       <div className={styles.formPane}>
         <div className={styles.formInner}>

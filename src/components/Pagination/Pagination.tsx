@@ -40,6 +40,10 @@ export default function Pagination({
   const totalPages = Math.max(1, Math.ceil(total / pageSize));
   const pageNumbers = getPageNumbers(page, totalPages);
 
+  const SelectCaretIcon = ICONS.selectCaret;
+  const PaginationPrevIcon = ICONS.paginationPrev;
+  const PaginationNextIcon = ICONS.paginationNext;
+
   return (
     <nav className={styles.wrapper} aria-label="Users table pagination">
       <div className={styles.pageSizeGroup}>
@@ -58,7 +62,7 @@ export default function Pagination({
             ))}
           </select>
           <span className={styles.selectChevron} aria-hidden="true">
-            {ICONS.selectCaret}
+            <SelectCaretIcon size={14} strokeWidth={2.5} />
           </span>
         </span>
         <span>out of {total}</span>
@@ -72,7 +76,7 @@ export default function Pagination({
           disabled={page <= 1}
           aria-label="Previous page"
         >
-          {ICONS.paginationPrev}
+          <PaginationPrevIcon size={14} strokeWidth={2.5} />
         </button>
 
         {pageNumbers.map((p, idx) =>
@@ -101,7 +105,7 @@ export default function Pagination({
           disabled={page >= totalPages}
           aria-label="Next page"
         >
-          {ICONS.paginationNext}
+          <PaginationNextIcon size={14} strokeWidth={2.5} />
         </button>
       </div>
     </nav>

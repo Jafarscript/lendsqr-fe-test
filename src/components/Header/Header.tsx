@@ -6,6 +6,12 @@ export default function Header({ onMenuClick }: { onMenuClick: () => void }) {
   const session = getSession();
   const displayName = session?.email ? session.email.split('@')[0] : 'User';
 
+  // Assign the Lucide components to capitalized variable names for JSX rendering
+  const MenuToggleIcon = ICONS.menuToggle;
+  const SearchIcon = ICONS.search;
+  const NotificationBellIcon = ICONS.notificationBell;
+  const UserAvatarIcon = ICONS.userAvatar;
+
   return (
     <header className={styles.header}>
       <button
@@ -14,12 +20,11 @@ export default function Header({ onMenuClick }: { onMenuClick: () => void }) {
         onClick={onMenuClick}
         aria-label="Toggle navigation menu"
       >
-        {ICONS.menuToggle}
+        <MenuToggleIcon size={20} strokeWidth={2} />
       </button>
 
       <div className={styles.logo}>
-        <span className={styles.logoMark} aria-hidden="true" />
-        <span>lendsqr</span>
+        <img src="/src/assets/logo.svg" alt="Lendsqr Logo" />
       </div>
 
       <form
@@ -37,7 +42,7 @@ export default function Header({ onMenuClick }: { onMenuClick: () => void }) {
           className={styles.searchInput}
         />
         <button type="submit" className={styles.searchButton} aria-label="Search">
-          {ICONS.search}
+          <SearchIcon size={14} strokeWidth={2.5} />
         </button>
       </form>
 
@@ -45,12 +50,12 @@ export default function Header({ onMenuClick }: { onMenuClick: () => void }) {
         <a href="#docs" className={styles.docsLink}>
           Docs
         </a>
-        <span className={styles.bell} aria-hidden="true">
-          {ICONS.notificationBell}
-        </span>
+        <button type="button" className={styles.bell} aria-label="Notifications">
+          <NotificationBellIcon size={20} strokeWidth={2} />
+        </button>
         <div className={styles.userMenu}>
           <div className={styles.avatar} aria-hidden="true">
-            {ICONS.userAvatar}
+            <UserAvatarIcon size={18} strokeWidth={2} />
           </div>
           <span className={styles.userName}>{displayName}</span>
         </div>

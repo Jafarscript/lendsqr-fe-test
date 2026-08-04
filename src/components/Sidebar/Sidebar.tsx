@@ -5,7 +5,7 @@ import styles from './Sidebar.module.scss';
 
 interface NavItem {
   label: string;
-  icon: string;
+  icon: React.ComponentType<{ size?: number | string; strokeWidth?: number | string }>;
 }
 
 // All icon values below come from src/constants/icons.ts — edit that file to
@@ -44,12 +44,12 @@ const SETTINGS_ITEMS: NavItem[] = [
 // sidebar is rendered to faithfully match the full admin console chrome shown
 // in the Figma, but is intentionally inert (not routed) since building out
 // every one of these sections is out of scope for the 4 required pages.
-function InertItem({ label, icon }: NavItem) {
+function InertItem({ label, icon: IconComponent }: NavItem) {
   return (
     <li>
       <span className={`${styles.navItem} ${styles.navItemInert}`} aria-disabled="true">
         <span className={styles.icon} aria-hidden="true">
-          {icon}
+          <IconComponent size={16} strokeWidth={2} />
         </span>
         {label}
       </span>
@@ -64,6 +64,10 @@ export default function Sidebar({
   isOpen: boolean;
   onClose: () => void;
 }) {
+   const SwitchOrgIcon = ICONS.switchOrganization;
+  const ChevronDownIcon = ICONS.chevronDown;
+  const DashboardIcon = ICONS.dashboard;
+  const LogoutIcon = ICONS.logout;
   return (
     <>
       {isOpen && <div className={styles.overlay} onClick={onClose} aria-hidden="true" />}
@@ -72,44 +76,48 @@ export default function Sidebar({
         aria-label="Main navigation"
       >
         <button type="button" className={styles.switchOrg}>
-          {ICONS.switchOrganization} Switch Organization {ICONS.chevronDown}
+          <SwitchOrgIcon size={16} strokeWidth={2} /> 
+          <span>Switch Organization</span> 
+          <ChevronDownIcon size={14} strokeWidth={2} />
         </button>
 
         <NavLink
           to="/dashboard"
+          end
           onClick={onClose}
-          className={({ isActive }) =>
+          className={({  isActive }) =>
             `${styles.dashboardLink} ${isActive ? styles.navItemActive : ''}`
           }
         >
           <span className={styles.icon} aria-hidden="true">
-            {ICONS.dashboard}
+            <DashboardIcon size={16} strokeWidth={2} />
           </span>
           Dashboard
         </NavLink>
 
         <div className={styles.sectionLabel}>Customers</div>
         <ul className={styles.navList}>
-          {CUSTOMER_ITEMS.map((item) =>
-            item.label === 'Users' ? (
+          {CUSTOMER_ITEMS.map((item) => {
+            const ItemIcon = item.icon; // Standardize instantiation variable reference
+            return item.label === 'Users' ? (
               <li key={item.label}>
                 <NavLink
-                  to="/users"
+                  to="/dashboard/users"
                   onClick={onClose}
                   className={({ isActive }) =>
                     `${styles.navItem} ${isActive ? styles.navItemActive : ''}`
                   }
                 >
                   <span className={styles.icon} aria-hidden="true">
-                    {item.icon}
+                    <ItemIcon size={16} strokeWidth={2} />
                   </span>
                   {item.label}
                 </NavLink>
               </li>
             ) : (
               <InertItem key={item.label} {...item} />
-            )
-          )}
+            );
+          })}
         </ul>
 
         <div className={styles.sectionLabel}>Businesses</div>
@@ -139,7 +147,7 @@ export default function Sidebar({
             }}
           >
             <span className={styles.icon} aria-hidden="true">
-              {ICONS.logout}
+              <LogoutIcon size={16} strokeWidth={2} />
             </span>
             Logout
           </button>

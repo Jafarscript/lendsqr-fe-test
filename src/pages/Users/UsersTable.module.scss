@@ -38,6 +38,12 @@
   align-items: center;
   gap: $space-2;
   position: relative;
+
+  button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 .filterTrigger {
