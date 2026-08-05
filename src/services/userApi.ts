@@ -1,11 +1,5 @@
 import type { UserDetail, UserFilters, PaginatedResponse, UserSummary } from '../types/user';
 
-// The 500-record dataset (~750KB) is dynamically imported rather than imported
-// at the top of this module. A static import would bundle the whole dataset into
-// the main JS chunk, inflating first-load size for every page — including Login,
-// which never needs this data at all. Lazy-loading it here means it's fetched as
-// its own chunk only once the Users/User Details pages actually need it, and only
-// once per session (cached in `usersCache` below).
 let usersCache: UserDetail[] | null = null;
 
 async function getAllUsers(): Promise<UserDetail[]> {
@@ -15,16 +9,13 @@ async function getAllUsers(): Promise<UserDetail[]> {
   return usersCache;
 }
 
-// If set (see .env.example), fetch from a real hosted endpoint (e.g. mockapi.io)
-// instead of the local dataset below. Populate this once you've uploaded the
-// 500 generated records — no other code changes are needed.
+
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL as string | undefined;
 
 // Simulated network delay so loading states are actually exercised in dev/testing.
 const NETWORK_DELAY_MS = 500;
 
-// Toggle via localStorage (`localStorage.setItem('forceApiError', 'true')`) to manually
-// exercise the error state during development without editing code.
+
 function shouldSimulateError() {
   return localStorage.getItem('forceApiError') === 'true';
 }
@@ -122,14 +113,38 @@ export async function fetchUserById(id: string): Promise<UserDetail> {
 }
 
 export async function fetchUserStats() {
+  if (shouldSimulateError()) {
+    await delay(null, NETWORK_DELAY_MS);
+    throw new Error('Failed to fetch user stats. Please try again.');
+  }
+
+  if (API_BASE_URL) {
+    return fetchUserStatsFromRemote();
+  }
+
   const allUsers = await getAllUsers();
+  return delay(calculateStats(allUsers));
+}
+
+async function fetchUserStatsFromRemote() {
+  const res = await fetch(`${API_BASE_URL}/users`);
+  if (!res.ok) {
+    throw new Error('Failed to fetch user stats. Please try again.');
+  }
+  const allUsers = (await res.json()) as UserDetail[];
+  return calculateStats(allUsers);
+}
+
+// Helper function to avoid repeating the calculation logic
+function calculateStats(allUsers: UserDetail[]) {
   const total = allUsers.length;
   const active = allUsers.filter((u) => u.status === 'active').length;
   const withLoans = allUsers.filter((u) => u.educationAndEmployment.loanRepayment > 0).length;
   const withSavings = allUsers.filter((u) => u.accountBalance > 0).length;
-
-  return delay({ total, active, withLoans, withSavings });
+  
+  return { total, active, withLoans, withSavings };
 }
+
 
 export async function updateUserStatus(
   id: string,

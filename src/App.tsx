@@ -13,17 +13,13 @@ export default function App() {
 
       <Route element={<ProtectedRoute />}>
         <Route element={<AppLayout />}>
-          {/* Dashboard has no distinct design in the Figma export provided for
-              this assessment (see README) — it currently renders a placeholder.
-              It's still the default landing route so the sidebar link and any
-              deep link work as expected. */}
           {/* <Route path="/dashboard" element={<Dashboard />} /> */}
           <Route path="/dashboard/users" element={<Users />} />
           <Route path="/dashboard/users/:userId" element={<UserDetails />} />
         </Route>
       </Route>
 
-      {/* Landing on Dashboard by default. */}
+      {/* Landing on Dashboard/Users by default. */}
       <Route path="/" element={<Navigate to="/dashboard/users" replace />} />
       <Route path="*" element={<Navigate to="/dashboard/users" replace />} />
     </Routes>

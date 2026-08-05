@@ -34,7 +34,7 @@ export interface Socials {
   instagram: string;
 }
 
-/** Summary shape — what the Users table row needs */
+
 export interface UserSummary {
   id: string;
   orgName: string;
@@ -45,7 +45,7 @@ export interface UserSummary {
   status: UserStatus;
 }
 
-/** Full shape — what the User Details page needs (summary + everything else) */
+
 export interface UserDetail extends UserSummary {
   userTier: 1 | 2 | 3;
   accountBalance: number;
