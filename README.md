@@ -3,8 +3,8 @@
 Frontend Engineering assessment submission for Lendsqr — a React + TypeScript + SCSS
 implementation of the Login, Users, and User Details screens from the provided Figma design.
 
-**Live app:** _add your deployed URL here, e.g. https://jafar-li-hammed-lendsqr-fe-test.vercel.app_
-**Repository:** _add your GitHub URL here_
+**Live app:** https://jafar-li-hammed-lendsqr-fe-test.vercel.app
+**Repository:** https://github.com/Jafarscript/lendsqr-fe-test
 
 ## Tech stack
 
@@ -25,21 +25,30 @@ npm run test:watch
 ```
 
 On first login, **any syntactically valid email + a password of 4 or more characters**
-will succeed — see [Mock authentication](#mock-authentication) below for why.
+will succeed, see [Mock authentication](#mock-authentication) below for why.
 
 ## Environment variables
 
-See `.env.example`. By default `VITE_API_BASE_URL` is empty and the app reads from the
-local generated dataset (`src/mocks/users.json`, 500 records). To point the app at a real
-hosted mock endpoint (e.g. mockapi.io) instead:
+See `.env.example`. `VITE_API_BASE_URL` controls the data source: blank uses the local
+generated dataset (`src/mocks/users.json`, 500 records); set to a real endpoint and the
+app fetches from there instead, no code changes needed either way, `userApi.ts` checks
+this variable and switches automatically.
 
-1. Create a mockapi.io project with a `users` resource and import `src/mocks/users.json`
-   as the seed data.
-2. Set `VITE_API_BASE_URL=https://<your-project-id>.mockapi.io/api/v1` in `.env`.
-3. Restart `npm run dev` (Vite only reads `.env` on startup).
+The deployed app is currently configured against a live mockapi.io endpoint, seeded via
+`scripts/seed-mockapi.mjs` (which POSTs records individually through their REST API,
+sidestepping the schema editor's import limits, see the note below on why). This is
+deliberate: it means the deployed app genuinely fetches over the network rather than
+reading a bundled file, which is verifiable in the Network tab.
 
-No code changes are needed — `src/services/userApi.ts` checks this variable and switches
-data sources automatically.
+**A note on free-tier record limits.** mockapi.io, My JSON Server, and Beeceptor were
+all evaluated for hosting the full 500-record dataset live. Every one of them caps
+free-tier usage well below 500 records (mockapi.io's free plan in particular stops
+accepting new records past ~100 per resource). None will host the full dataset for
+free, so the live mockapi.io endpoint is seeded with the subset their free tier accepts.
+The pagination, filtering, and table-performance logic described below is what was
+actually engineered and tested against the full 500 records, via the same
+`VITE_API_BASE_URL` toggle pointed at the local dataset the mechanism works correctly
+at any record count; the ceiling here is the free tooling, not the app.
 
 ## Project structure
 
@@ -95,13 +104,13 @@ mockup, so the UI stays internally consistent with the data it's actually displa
 
 **Sidebar scope.** The full sidebar navigation (Customers/Businesses/Settings sections)
 is rendered to faithfully match the admin console chrome shown in the design, but only
-Dashboard and Users are wired to real routes — building out every other section
+Dashboard and Users are wired to real routes building out every other section
 (Guarantors, Loans, Decision Models, etc.) is out of scope for the 4 pages this
 assessment asks for.
 
 **Dashboard page.** The Figma export provided for this assessment did not include a
 distinct Dashboard screen (only Login, Users, and User Details). This was flagged to
-Lendsqr directly rather than guessed at silently — see the note below.
+Lendsqr directly rather than guessed at silently see the note below.
 
 **Undesigned User Details tabs.** Of the 6 tabs on the User Details page, only
 "General Details" has content specified in the Figma. The remaining 5 (Documents, Bank
@@ -122,14 +131,15 @@ placeholder state rather than invented content, for the same reason as above.
 
 ## Testing approach
 
-Unit tests focus on logic with real branching behavior — form validation, pagination
-boundaries/ellipsis, filtering, the simulated error path, and disabled-state logic —
+Unit tests focus on logic with real branching behavior: form validation, pagination
+boundaries/ellipsis, filtering, the simulated error path, and disabled-state logic
 rather than snapshotting static markup. Both positive and negative cases are covered
 for each (see test output for the full list). Run `npm run test` for results.
 
 ## Known limitations
 
 - Status changes (Blacklist/Activate) persist only for the current session (in-memory
-  dataset mutation), since there's no real backend to write to.
-- The mockapi.io external endpoint integration is wired and ready (see Environment
-  variables above) but not yet populated with live data as of this submission.
+  dataset mutation on the local dataset; writes against the live mockapi.io endpoint
+  persist there instead, subject to its own free-tier limits).
+- The live mockapi.io endpoint holds a subset of records (its free tier caps around
+  100), not the full 500 see the note under Environment variables above.
