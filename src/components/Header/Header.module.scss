@@ -1,4 +1,4 @@
-@use "../../styles/variables" as *;
+@use '../../styles/variables' as *;
 
 .header {
   height: $header-height;
@@ -13,7 +13,7 @@
   top: 0;
   z-index: 5;
 
-  @include mobile {
+  @include sm {
     padding: 0 $space-4;
     gap: $space-3;
   }
@@ -23,11 +23,10 @@
   display: flex;
   align-items: center;
   gap: $space-2;
-
-  img {
-    width: 120px;
-    height: auto;
-  }
+  font-size: 20px;
+  font-weight: 700;
+  color: $color-navy;
+  flex-shrink: 0;
 }
 
 .menuButton {
@@ -36,7 +35,7 @@
   color: $color-navy;
   padding: $space-2;
 
-  @include tablet {
+  @include lg {
     display: block;
   }
 }
@@ -53,7 +52,7 @@
   max-width: 460px;
   display: flex;
 
-  @include mobile {
+  @include sm {
     display: none;
   }
 }
@@ -84,7 +83,7 @@
   gap: $space-5;
   flex-shrink: 0;
 
-  @include mobile {
+  @include sm {
     gap: $space-3;
   }
 }
@@ -94,7 +93,7 @@
   color: $color-text;
   text-decoration: underline;
 
-  @include mobile {
+  @include sm {
     display: none;
   }
 }
@@ -127,7 +126,7 @@
   font-weight: 600;
   color: $color-navy;
 
-  @include mobile {
+  @include sm {
     display: none;
   }
 }

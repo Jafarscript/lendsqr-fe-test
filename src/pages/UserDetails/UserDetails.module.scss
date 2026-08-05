@@ -3,7 +3,7 @@
 .page {
   padding: $space-5 $space-6;
 
-  @include mobile {
+  @include sm {
     padding: $space-4;
   }
 }

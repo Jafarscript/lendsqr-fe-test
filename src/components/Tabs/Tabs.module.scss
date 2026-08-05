@@ -6,7 +6,7 @@
   border-bottom: 1px solid $color-border;
   overflow-x: auto;
 
-  @include mobile {
+  @include sm {
     gap: $space-4;
   }
 }

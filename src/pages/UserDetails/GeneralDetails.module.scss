@@ -17,11 +17,11 @@
   grid-template-columns: repeat(4, 1fr);
   gap: $space-5;
 
-  @include tablet {
+  @include md {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @include mobile {
+  @include sm {
     grid-template-columns: 1fr;
   }
 }

@@ -11,7 +11,7 @@
   top: 0;
   padding: $space-5 0;
 
-  @include tablet {
+  @include lg {
     position: fixed;
     top: $header-height;
     left: 0;
@@ -24,7 +24,7 @@
 }
 
 .sidebarOpen {
-  @include tablet {
+  @include lg {
     transform: translateX(0);
   }
 }
@@ -32,7 +32,7 @@
 .overlay {
   display: none;
 
-  @include tablet {
+  @include lg {
     display: block;
     position: fixed;
     inset: $header-height 0 0 0;
